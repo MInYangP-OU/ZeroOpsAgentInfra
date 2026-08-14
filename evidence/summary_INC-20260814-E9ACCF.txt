@@ -1,0 +1,19 @@
+AgentTeams: ZeroOps-Team
+Agents: 6
+Pipeline: AnomalyDetector -> AlertAggregator -> RootCauseAnalyst -> RepairExecutor -> RecoveryValidator -> IncidentReviewer
+Final State: rollback
+Transitions: 4
+Team Events: 6
+
+Incident: INC-20260814-E9ACCF
+Severity: P2
+Root Cause: api-gateway (confidence: 0.7)
+Soft Alerts: 8
+Top-K Candidates: ['api-gateway']
+Repair Actions: 0
+Canary: True
+Validation: pending (SLA: pending)
+  - Layer1 Metrics: pending (0 services)
+  - Layer2 Trace: PASSED
+  - Layer3 Regression: PASSED
+Postmortem: False

@@ -1,0 +1,234 @@
+[
+  {
+    "event": "pipeline_started",
+    "incident_id": "INC-20260814-6BFA25",
+    "timestamp": "2026-08-14T03:29:32Z"
+  },
+  {
+    "event": "agent_completed",
+    "incident_id": "INC-20260814-6BFA25",
+    "timestamp": "2026-08-14T03:29:32Z",
+    "agent": "AnomalyDetector",
+    "elapsed_ms": 1.65
+  },
+  {
+    "event": "agent_completed",
+    "incident_id": "INC-20260814-6BFA25",
+    "timestamp": "2026-08-14T03:29:32Z",
+    "agent": "AlertAggregator",
+    "elapsed_ms": 0.16
+  },
+  {
+    "event": "agent_completed",
+    "incident_id": "INC-20260814-6BFA25",
+    "timestamp": "2026-08-14T03:29:32Z",
+    "agent": "RootCauseAnalyst",
+    "elapsed_ms": 0.34
+  },
+  {
+    "event": "agent_skipped",
+    "incident_id": "INC-20260814-6BFA25",
+    "timestamp": "2026-08-14T03:29:32Z",
+    "agent": "RepairExecutor",
+    "state": "escalated"
+  },
+  {
+    "event": "agent_skipped",
+    "incident_id": "INC-20260814-6BFA25",
+    "timestamp": "2026-08-14T03:29:32Z",
+    "agent": "RecoveryValidator",
+    "state": "escalated"
+  },
+  {
+    "event": "agent_completed",
+    "incident_id": "INC-20260814-6BFA25",
+    "timestamp": "2026-08-14T03:29:32Z",
+    "agent": "IncidentReviewer",
+    "elapsed_ms": 2.89
+  },
+  {
+    "event": "pipeline_completed",
+    "incident_id": "INC-20260814-6BFA25",
+    "timestamp": "2026-08-14T03:29:32Z"
+  },
+  {
+    "agent": "AnomalyDetector",
+    "agent_id": "AnomalyDetector-99c7888d",
+    "skill": "dynamic-baseline",
+    "input_keys": [
+      "series"
+    ],
+    "timestamp": "2026-08-14T03:29:32Z",
+    "status": "success",
+    "elapsed_ms": 0.05,
+    "output_summary": "{'anomalies': [{'index': 3, 'value': 0.08, 'ewma_before': 0.0258, 'sigma_before': 0.004, 'deviation': 0.0542, 'z_score': 13.56, 'is_anomaly': True}, {'index': 4, 'value': 0.12, 'ewma_before': 0.042, 'sigma_before': 0.0211, 'deviation': 0.078, 'z_score': 3.7, 'is_anomaly': True}], 'summary': {'sample"
+  },
+  {
+    "agent": "AnomalyDetector",
+    "agent_id": "AnomalyDetector-99c7888d",
+    "skill": "dynamic-baseline",
+    "input_keys": [
+      "series"
+    ],
+    "timestamp": "2026-08-14T03:29:32Z",
+    "status": "success",
+    "elapsed_ms": 0.04,
+    "output_summary": "{'anomalies': [{'index': 3, 'value': 300, 'ewma_before': 85.765, 'sigma_before': 3.9985, 'deviation': 214.235, 'z_score': 53.58, 'is_anomaly': True}, {'index': 4, 'value': 600, 'ewma_before': 150.0355, 'sigma_before': 82.207, 'deviation': 449.9645, 'z_score': 5.47, 'is_anomaly': True}, {'index': 5, "
+  },
+  {
+    "agent": "AnomalyDetector",
+    "agent_id": "AnomalyDetector-99c7888d",
+    "skill": "dynamic-baseline",
+    "input_keys": [
+      "series"
+    ],
+    "timestamp": "2026-08-14T03:29:32Z",
+    "status": "success",
+    "elapsed_ms": 0.03,
+    "output_summary": "{'anomalies': [{'index': 3, 'value': 0.05, 'ewma_before': 0.008, 'sigma_before': 0.002, 'deviation': 0.042, 'z_score': 21.07, 'is_anomaly': True}, {'index': 4, 'value': 0.15, 'ewma_before': 0.0206, 'sigma_before': 0.0162, 'deviation': 0.1294, 'z_score': 8.0, 'is_anomaly': True}, {'index': 5, 'value'"
+  },
+  {
+    "agent": "AnomalyDetector",
+    "agent_id": "AnomalyDetector-99c7888d",
+    "skill": "dynamic-baseline",
+    "input_keys": [
+      "series"
+    ],
+    "timestamp": "2026-08-14T03:29:32Z",
+    "status": "success",
+    "elapsed_ms": 0.03,
+    "output_summary": "{'anomalies': [{'index': 3, 'value': 200, 'ewma_before': 35.765, 'sigma_before': 3.9985, 'deviation': 164.235, 'z_score': 41.07, 'is_anomaly': True}, {'index': 4, 'value': 700, 'ewma_before': 85.0355, 'sigma_before': 63.0575, 'deviation': 614.9645, 'z_score': 9.75, 'is_anomaly': True}, {'index': 5, "
+  },
+  {
+    "agent": "AnomalyDetector",
+    "agent_id": "AnomalyDetector-99c7888d",
+    "skill": "dynamic-baseline",
+    "input_keys": [
+      "series"
+    ],
+    "timestamp": "2026-08-14T03:29:32Z",
+    "status": "success",
+    "elapsed_ms": 0.03,
+    "output_summary": "{'anomalies': [{'index': 3, 'value': 0.1, 'ewma_before': 0.0158, 'sigma_before': 0.004, 'deviation': 0.0842, 'z_score': 21.07, 'is_anomaly': True}, {'index': 4, 'value': 0.25, 'ewma_before': 0.041, 'sigma_before': 0.0325, 'deviation': 0.209, 'z_score': 6.44, 'is_anomaly': True}, {'index': 5, 'value'"
+  },
+  {
+    "agent": "AnomalyDetector",
+    "agent_id": "AnomalyDetector-99c7888d",
+    "skill": "dynamic-baseline",
+    "input_keys": [
+      "series"
+    ],
+    "timestamp": "2026-08-14T03:29:32Z",
+    "status": "success",
+    "elapsed_ms": 0.03,
+    "output_summary": "{'anomalies': [{'index': 3, 'value': 400, 'ewma_before': 61.53, 'sigma_before': 7.997, 'deviation': 338.47, 'z_score': 42.32, 'is_anomaly': True}, {'index': 4, 'value': 1200, 'ewma_before': 163.071, 'sigma_before': 129.9437, 'deviation': 1036.929, 'z_score': 7.98, 'is_anomaly': True}, {'index': 5, '"
+  },
+  {
+    "agent": "AnomalyDetector",
+    "agent_id": "AnomalyDetector-99c7888d",
+    "skill": "dynamic-baseline",
+    "input_keys": [
+      "series"
+    ],
+    "timestamp": "2026-08-14T03:29:32Z",
+    "status": "success",
+    "elapsed_ms": 0.03,
+    "output_summary": "{'anomalies': [{'index': 3, 'value': 0.03, 'ewma_before': 0.008, 'sigma_before': 0.002, 'deviation': 0.022, 'z_score': 11.03, 'is_anomaly': True}, {'index': 4, 'value': 0.06, 'ewma_before': 0.0146, 'sigma_before': 0.0086, 'deviation': 0.0454, 'z_score': 5.29, 'is_anomaly': True}, {'index': 5, 'value"
+  },
+  {
+    "agent": "AnomalyDetector",
+    "agent_id": "AnomalyDetector-99c7888d",
+    "skill": "dynamic-baseline",
+    "input_keys": [
+      "series"
+    ],
+    "timestamp": "2026-08-14T03:29:32Z",
+    "status": "success",
+    "elapsed_ms": 0.03,
+    "output_summary": "{'anomalies': [{'index': 3, 'value': 120, 'ewma_before': 42.7203, 'sigma_before': 2.0341, 'deviation': 77.2797, 'z_score': 37.99, 'is_anomaly': True}, {'index': 4, 'value': 300, 'ewma_before': 65.9042, 'sigma_before': 29.6783, 'deviation': 234.0958, 'z_score': 7.89, 'is_anomaly': True}, {'index': 5,"
+  },
+  {
+    "agent": "AlertAggregator",
+    "mcp_server": "cmdb-mcp",
+    "method": "get_topology",
+    "elapsed_ms": 0.01,
+    "timestamp": "2026-08-14T03:29:32Z",
+    "status": "success"
+  },
+  {
+    "agent": "AlertAggregator",
+    "agent_id": "AlertAggregator-11a58aa1",
+    "skill": "alert-correlation",
+    "input_keys": [
+      "alerts",
+      "topology"
+    ],
+    "timestamp": "2026-08-14T03:29:32Z",
+    "status": "success",
+    "elapsed_ms": 0.04,
+    "output_summary": "[{'service': 'svc-a', 'alert_count': 2, 'severity': 2, 'alert_types': ['anomaly', 'anomaly_burst'], 'time_window': '2026-07-21T10:25:00Z ~ 2026-07-21T10:26:00Z', 'summary': 'svc-a: 2 alerts [anomaly, anomaly_burst]', 'correlated_services': ['svc-b']}, {'service': 'svc-b', 'alert_count': 1, 'severity"
+  },
+  {
+    "agent": "RootCauseAnalyst",
+    "mcp_server": "cmdb-mcp",
+    "method": "get_topology",
+    "elapsed_ms": 0.01,
+    "timestamp": "2026-08-14T03:29:32Z",
+    "status": "success"
+  },
+  {
+    "agent": "RootCauseAnalyst",
+    "mcp_server": "kb-mcp",
+    "method": "search",
+    "elapsed_ms": 0.01,
+    "timestamp": "2026-08-14T03:29:32Z",
+    "status": "success"
+  },
+  {
+    "agent": "RootCauseAnalyst",
+    "agent_id": "RootCauseAnalyst-3a10d729",
+    "skill": "root-cause-graph",
+    "input_keys": [
+      "incidents",
+      "topology",
+      "alerts",
+      "knowledge",
+      "data_query",
+      "prometheus",
+      "tracer",
+      "top_k"
+    ],
+    "timestamp": "2026-08-14T03:29:32Z",
+    "status": "success",
+    "elapsed_ms": 0.12,
+    "output_summary": "{'node': 'svc-a', 'confidence': 0.5, 'causal_chain': ['svc-a -> svc-b: upstream failure'], 'suggested_fixes': [{'type': 'restart', 'target': 'svc-a', 'action': 'service_restart', 'risk': 'high', 'requires_approval': True}], 'knowledge_matches': 0, 'score': 0.0, 'top_k_candidates': [{'rank': 1, 'node"
+  },
+  {
+    "agent": "IncidentReviewer",
+    "agent_id": "IncidentReviewer-fe645a6c",
+    "skill": "knowledge-extract",
+    "input_keys": [
+      "icb"
+    ],
+    "timestamp": "2026-08-14T03:29:32Z",
+    "status": "success",
+    "elapsed_ms": 2.46,
+    "output_summary": "{'root_pattern': {'pattern_type': 'root_cause_pattern', 'service': 'svc-a', 'symptom': 'svc-a: 2 alerts [anomaly, anomaly_burst]', 'root_cause': 'svc-a', 'confidence': 0.5}, 'fix_patterns': [{'pattern_type': 'fix_pattern', 'root_cause': 'svc-a', 'fix_action': 'service_restart', 'target': 'svc-a', 'e"
+  },
+  {
+    "agent": "IncidentReviewer",
+    "mcp_server": "kb-mcp",
+    "method": "write",
+    "elapsed_ms": 0.05,
+    "timestamp": "2026-08-14T03:29:32Z",
+    "status": "success"
+  },
+  {
+    "agent": "IncidentReviewer",
+    "mcp_server": "itsm-mcp",
+    "method": "create_ticket",
+    "elapsed_ms": 0.03,
+    "timestamp": "2026-08-14T03:29:32Z",
+    "status": "success"
+  }
+]

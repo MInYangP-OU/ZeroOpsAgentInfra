@@ -1,0 +1,73 @@
+{
+  "servers": [
+    {
+      "name": "prometheus-mcp",
+      "tool": "Prometheus/VictoriaMetrics",
+      "auth": "api_token",
+      "methods": [
+        "query",
+        "alert_list"
+      ],
+      "audit": "call_log"
+    },
+    {
+      "name": "cmdb-mcp",
+      "tool": "CMDB/Service Registry",
+      "auth": "mTLS",
+      "methods": [
+        "get_topology",
+        "get_service"
+      ],
+      "audit": "query_log"
+    },
+    {
+      "name": "cicd-mcp",
+      "tool": "CloudEffect/Jenkins",
+      "auth": "OAuth2",
+      "methods": [
+        "deploy",
+        "rollback"
+      ],
+      "audit": "change_audit"
+    },
+    {
+      "name": "nacos-mcp",
+      "tool": "Nacos Config Center",
+      "auth": "mTLS",
+      "methods": [
+        "get_config",
+        "update_config"
+      ],
+      "audit": "change_audit"
+    },
+    {
+      "name": "itsm-mcp",
+      "tool": "Jira/ServiceNow",
+      "auth": "api_token",
+      "methods": [
+        "create_ticket",
+        "approve"
+      ],
+      "audit": "approval_audit"
+    },
+    {
+      "name": "kb-mcp",
+      "tool": "PolarDB PG + pgvector",
+      "auth": "DB-Auth",
+      "methods": [
+        "search",
+        "write"
+      ],
+      "audit": "write_audit"
+    },
+    {
+      "name": "trace-mcp",
+      "tool": "ARMS/Jaeger",
+      "auth": "api_token",
+      "methods": [
+        "get_trace"
+      ],
+      "audit": "query_log"
+    }
+  ]
+}

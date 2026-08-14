@@ -1,0 +1,13 @@
+AgentTeams: ZeroOps-Team
+Agents: 5
+Pipeline: AlertAggregator -> RootCauseAnalyst -> RepairExecutor -> RecoveryValidator -> IncidentReviewer
+Final State: closed
+Transitions: 6
+Team Events: 7
+
+Incident: INC-20260803-9CC581
+Severity: P1
+Root Cause: inventory-service (confidence: 0.92)
+Repair Actions: 2
+Validation: recovered (SLA: PASSED)
+Postmortem: True

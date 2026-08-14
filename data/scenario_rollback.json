@@ -1,0 +1,19 @@
+{
+  "name": "rollback",
+  "description": "验证失败->自动回滚剧本：修复后链路层出现错误 span 且 3 分钟内有二次告警，RecoveryValidator 三层验证不通过，触发预生成回滚方案，状态机走 verifying->rollback->reviewed->closed。alerts/topology/knowledge 缺省时沿用 sample 数据。",
+  "inject_spans": [
+    {
+      "service": "order-service",
+      "span": "inventory-service.getStock",
+      "duration_ms": 2300,
+      "status": "error"
+    }
+  ],
+  "inject_secondary_alerts": [
+    {
+      "service": "payment-service",
+      "type": "error_rate",
+      "ts_minutes_ago": 1
+    }
+  ]
+}

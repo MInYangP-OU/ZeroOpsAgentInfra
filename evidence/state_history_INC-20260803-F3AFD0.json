@@ -1,0 +1,32 @@
+[
+  {
+    "from": "detected",
+    "to": "aggregating",
+    "reason": "AlertAggregator starting",
+    "timestamp": "2026-08-03T04:25:23.434Z"
+  },
+  {
+    "from": "aggregating",
+    "to": "analyzing",
+    "reason": "RootCauseAnalyst starting",
+    "timestamp": "2026-08-03T04:25:23.434Z"
+  },
+  {
+    "from": "analyzing",
+    "to": "escalated",
+    "reason": "Low root cause confidence",
+    "timestamp": "2026-08-03T04:25:23.434Z"
+  },
+  {
+    "from": "escalated",
+    "to": "reviewed",
+    "reason": "IncidentReviewer starting",
+    "timestamp": "2026-08-03T04:25:23.435Z"
+  },
+  {
+    "from": "reviewed",
+    "to": "closed",
+    "reason": "Pipeline complete",
+    "timestamp": "2026-08-03T04:25:23.438Z"
+  }
+]

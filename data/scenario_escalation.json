@@ -1,0 +1,26 @@
+{
+  "name": "escalation",
+  "description": "低置信度->自动升级剧本：拓扑成环且无告警特征匹配，根因置信度 0.5 < 0.7，RootCauseAnalyst 触发升级，RepairExecutor 被安全闸门拦截（修复零执行），状态机走 analyzing->escalated->reviewed->closed。",
+  "topology": {
+    "svc-a": { "depends_on": ["svc-b"], "depended_by": ["svc-b"], "status": "healthy" },
+    "svc-b": { "depends_on": ["svc-a"], "depended_by": ["svc-a"], "status": "healthy" }
+  },
+  "knowledge": [],
+  "alerts": [
+    {
+      "id": "ALT-X1", "source": "custom", "service": "svc-a", "type": "anomaly",
+      "value": 1, "threshold": 0, "severity": 2, "ts": "2026-07-21T10:25:00Z",
+      "message": "svc-a anomaly detected"
+    },
+    {
+      "id": "ALT-X2", "source": "custom", "service": "svc-a", "type": "anomaly_burst",
+      "value": 2, "threshold": 0, "severity": 2, "ts": "2026-07-21T10:26:00Z",
+      "message": "svc-a second anomaly"
+    },
+    {
+      "id": "ALT-X3", "source": "custom", "service": "svc-b", "type": "anomaly",
+      "value": 1, "threshold": 0, "severity": 2, "ts": "2026-07-21T10:27:00Z",
+      "message": "svc-b anomaly detected"
+    }
+  ]
+}

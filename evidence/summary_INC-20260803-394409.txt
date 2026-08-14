@@ -1,0 +1,18 @@
+AgentTeams: ZeroOps-Team
+Agents: 5
+Pipeline: AlertAggregator -> RootCauseAnalyst -> RepairExecutor -> RecoveryValidator -> IncidentReviewer
+Final State: closed
+Transitions: 5
+Team Events: 7
+
+Incident: INC-20260803-394409
+Severity: P2
+Root Cause: svc-b (confidence: 0.5)
+Repair Actions: 0
+Validation: pending (SLA: pending)
+  - Layer1 Metrics: pending (0 services)
+  - Layer2 Trace: PASSED
+  - Layer3 Regression: PASSED
+Postmortem: True
+Knowledge Consistency: True (notes: [])
+MTTR: 0.001s

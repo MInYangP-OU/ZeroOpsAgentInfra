@@ -1,0 +1,90 @@
+[
+  {
+    "id": "ALT-001",
+    "source": "prometheus",
+    "service": "order-service",
+    "type": "error_rate",
+    "value": 15.2,
+    "threshold": 5.0,
+    "severity": 1,
+    "ts": "2026-07-21T10:25:00Z",
+    "message": "order-service error rate 15.2% > 5%"
+  },
+  {
+    "id": "ALT-002",
+    "source": "prometheus",
+    "service": "payment-service",
+    "type": "timeout_rate",
+    "value": 30.5,
+    "threshold": 10.0,
+    "severity": 1,
+    "ts": "2026-07-21T10:26:00Z",
+    "message": "payment-service timeout 30.5% > 10%"
+  },
+  {
+    "id": "ALT-003",
+    "source": "prometheus",
+    "service": "order-service",
+    "type": "latency",
+    "value": 850,
+    "threshold": 200,
+    "severity": 2,
+    "ts": "2026-07-21T10:26:30Z",
+    "message": "order-service p99 latency 850ms > 200ms"
+  },
+  {
+    "id": "ALT-004",
+    "source": "log",
+    "service": "inventory-service",
+    "type": "connection_pool",
+    "value": 50,
+    "threshold": 50,
+    "severity": 1,
+    "ts": "2026-07-21T10:27:00Z",
+    "message": "inventory-service DB connection pool exhausted"
+  },
+  {
+    "id": "ALT-005",
+    "source": "apm",
+    "service": "order-service",
+    "type": "call_failure",
+    "value": 45,
+    "threshold": 5,
+    "severity": 1,
+    "ts": "2026-07-21T10:27:30Z",
+    "message": "order-service -> inventory-service call failures 45%"
+  },
+  {
+    "id": "ALT-006",
+    "source": "prometheus",
+    "service": "payment-service",
+    "type": "error_rate",
+    "value": 8.3,
+    "threshold": 5.0,
+    "severity": 2,
+    "ts": "2026-07-21T10:28:00Z",
+    "message": "payment-service error rate 8.3% > 5%"
+  },
+  {
+    "id": "ALT-007",
+    "source": "log",
+    "service": "inventory-service",
+    "type": "timeout",
+    "value": 12,
+    "threshold": 3,
+    "severity": 2,
+    "ts": "2026-07-21T10:28:30Z",
+    "message": "inventory-service DB query timeouts 12 > 3"
+  },
+  {
+    "id": "ALT-008",
+    "source": "custom",
+    "service": "order-service",
+    "type": "circuit_breaker",
+    "value": 1,
+    "threshold": 0,
+    "severity": 1,
+    "ts": "2026-07-21T10:29:00Z",
+    "message": "order-service circuit breaker activated"
+  }
+]

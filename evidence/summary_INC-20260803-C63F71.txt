@@ -1,0 +1,20 @@
+AgentTeams: ZeroOps-Team
+Agents: 5
+Pipeline: AlertAggregator -> RootCauseAnalyst -> RepairExecutor -> RecoveryValidator -> IncidentReviewer
+Final State: closed
+Transitions: 7
+Team Events: 7
+
+Incident: INC-20260803-C63F71
+Severity: P1
+Root Cause: inventory-service (confidence: 0.92)
+Repair Actions: 2
+  - [ACT-001] scaling on inventory-service: increase_max_connections (approved_by: human:sre-team-lead)
+  - [ACT-002] traffic on inventory-service: circuit_breaker_activate (approved_by: human:sre-team-lead)
+Validation: degraded (SLA: PASSED)
+  - Layer1 Metrics: PASSED (3 services)
+  - Layer2 Trace: FAILED
+  - Layer3 Regression: FAILED
+Postmortem: True
+Knowledge Consistency: True (notes: [])
+MTTR: 0.004s

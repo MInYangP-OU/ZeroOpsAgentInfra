@@ -1,0 +1,38 @@
+[
+  {
+    "from": "detected",
+    "to": "aggregating",
+    "reason": "AlertAggregator starting",
+    "timestamp": "2026-08-14T03:28:22.000Z"
+  },
+  {
+    "from": "aggregating",
+    "to": "analyzing",
+    "reason": "RootCauseAnalyst starting",
+    "timestamp": "2026-08-14T03:28:22.000Z"
+  },
+  {
+    "from": "analyzing",
+    "to": "repairing",
+    "reason": "RepairExecutor starting",
+    "timestamp": "2026-08-14T03:28:22.001Z"
+  },
+  {
+    "from": "repairing",
+    "to": "escalated",
+    "reason": "Canary validation failed",
+    "timestamp": "2026-08-14T03:28:22.001Z"
+  },
+  {
+    "from": "escalated",
+    "to": "reviewed",
+    "reason": "IncidentReviewer starting",
+    "timestamp": "2026-08-14T03:28:22.001Z"
+  },
+  {
+    "from": "reviewed",
+    "to": "closed",
+    "reason": "Pipeline complete",
+    "timestamp": "2026-08-14T03:28:22.005Z"
+  }
+]

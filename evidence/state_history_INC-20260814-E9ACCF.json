@@ -1,0 +1,26 @@
+[
+  {
+    "from": "detected",
+    "to": "aggregating",
+    "reason": "AlertAggregator starting",
+    "timestamp": "2026-08-14T03:24:19.279Z"
+  },
+  {
+    "from": "aggregating",
+    "to": "analyzing",
+    "reason": "RootCauseAnalyst starting",
+    "timestamp": "2026-08-14T03:24:19.280Z"
+  },
+  {
+    "from": "analyzing",
+    "to": "repairing",
+    "reason": "RepairExecutor starting",
+    "timestamp": "2026-08-14T03:24:19.280Z"
+  },
+  {
+    "from": "repairing",
+    "to": "rollback",
+    "reason": "RepairExecutor failed",
+    "timestamp": "2026-08-14T03:24:19.281Z"
+  }
+]

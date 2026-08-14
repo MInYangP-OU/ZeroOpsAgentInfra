@@ -1,0 +1,45 @@
+{
+  "order-service": {
+    "depends_on": [
+      "inventory-service",
+      "payment-service"
+    ],
+    "depended_by": [
+      "api-gateway"
+    ],
+    "status": "critical",
+    "config": {
+      "DB_CONN_POOL_MAX": 50,
+      "circuit_breaker": "active"
+    }
+  },
+  "payment-service": {
+    "depends_on": [
+      "order-service"
+    ],
+    "depended_by": [],
+    "status": "warning",
+    "config": {
+      "timeout_ms": 3000
+    }
+  },
+  "inventory-service": {
+    "depends_on": [],
+    "depended_by": [
+      "order-service"
+    ],
+    "status": "critical",
+    "config": {
+      "DB_CONN_POOL_MAX": 50,
+      "DB_HOST": "db-primary"
+    }
+  },
+  "api-gateway": {
+    "depends_on": [
+      "order-service"
+    ],
+    "depended_by": [],
+    "status": "healthy",
+    "config": {}
+  }
+}

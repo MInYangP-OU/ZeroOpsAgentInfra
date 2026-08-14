@@ -1,0 +1,16 @@
+{
+  "inventory-service": {
+    "DB_CONN_POOL_MAX": 50,
+    "DB_HOST": "db-primary",
+    "DB_PORT": 5432
+  },
+  "order-service": {
+    "DB_CONN_POOL_MAX": 30,
+    "circuit_breaker": "active",
+    "timeout_ms": 2000
+  },
+  "payment-service": {
+    "timeout_ms": 3000,
+    "retry_count": 3
+  }
+}

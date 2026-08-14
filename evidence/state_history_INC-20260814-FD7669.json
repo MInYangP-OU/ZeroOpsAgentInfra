@@ -1,0 +1,38 @@
+[
+  {
+    "from": "detected",
+    "to": "aggregating",
+    "reason": "AlertAggregator starting",
+    "timestamp": "2026-08-14T03:24:14.826Z"
+  },
+  {
+    "from": "aggregating",
+    "to": "analyzing",
+    "reason": "RootCauseAnalyst starting",
+    "timestamp": "2026-08-14T03:24:14.826Z"
+  },
+  {
+    "from": "analyzing",
+    "to": "repairing",
+    "reason": "RepairExecutor starting",
+    "timestamp": "2026-08-14T03:24:14.827Z"
+  },
+  {
+    "from": "repairing",
+    "to": "verifying",
+    "reason": "RecoveryValidator starting",
+    "timestamp": "2026-08-14T03:24:14.828Z"
+  },
+  {
+    "from": "verifying",
+    "to": "reviewed",
+    "reason": "IncidentReviewer starting",
+    "timestamp": "2026-08-14T03:24:14.828Z"
+  },
+  {
+    "from": "reviewed",
+    "to": "closed",
+    "reason": "Pipeline complete",
+    "timestamp": "2026-08-14T03:24:14.832Z"
+  }
+]

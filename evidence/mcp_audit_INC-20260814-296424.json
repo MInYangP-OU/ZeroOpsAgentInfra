@@ -1,0 +1,74 @@
+[
+  {
+    "agent": "AlertAggregator",
+    "mcp_server": "cmdb-mcp",
+    "method": "get_topology",
+    "elapsed_ms": 0.01,
+    "timestamp": "2026-08-14T03:23:28Z",
+    "status": "success"
+  },
+  {
+    "agent": "RootCauseAnalyst",
+    "mcp_server": "cmdb-mcp",
+    "method": "get_topology",
+    "elapsed_ms": 0.01,
+    "timestamp": "2026-08-14T03:23:28Z",
+    "status": "success"
+  },
+  {
+    "agent": "RootCauseAnalyst",
+    "mcp_server": "kb-mcp",
+    "method": "search",
+    "elapsed_ms": 0.02,
+    "timestamp": "2026-08-14T03:23:28Z",
+    "status": "success"
+  },
+  {
+    "agent": "RepairExecutor",
+    "mcp_server": "nacos-mcp",
+    "method": "get_config",
+    "elapsed_ms": 0.01,
+    "timestamp": "2026-08-14T03:23:28Z",
+    "status": "success"
+  },
+  {
+    "agent": "RepairExecutor",
+    "mcp_server": "kb-mcp",
+    "method": "search",
+    "elapsed_ms": 0.01,
+    "timestamp": "2026-08-14T03:23:28Z",
+    "status": "success"
+  },
+  {
+    "agent": "RepairExecutor",
+    "mcp_server": "itsm-mcp",
+    "method": "create_ticket",
+    "elapsed_ms": 0.02,
+    "timestamp": "2026-08-14T03:23:28Z",
+    "status": "success"
+  },
+  {
+    "agent": "RepairExecutor",
+    "mcp_server": "itsm-mcp",
+    "method": "approve",
+    "elapsed_ms": 0.04,
+    "timestamp": "2026-08-14T03:23:28Z",
+    "status": "success"
+  },
+  {
+    "agent": "IncidentReviewer",
+    "mcp_server": "kb-mcp",
+    "method": "write",
+    "elapsed_ms": 0.05,
+    "timestamp": "2026-08-14T03:23:28Z",
+    "status": "success"
+  },
+  {
+    "agent": "IncidentReviewer",
+    "mcp_server": "itsm-mcp",
+    "method": "create_ticket",
+    "elapsed_ms": 0.02,
+    "timestamp": "2026-08-14T03:23:28Z",
+    "status": "success"
+  }
+]

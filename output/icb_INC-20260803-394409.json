@@ -1,0 +1,136 @@
+{
+  "incident_id": "INC-20260803-394409",
+  "timestamp": "2026-08-03T07:23:59Z",
+  "severity": "P2",
+  "stage": "reviewed",
+  "alert_fingerprint": {
+    "source_count": 3,
+    "correlated_services": [
+      "svc-b"
+    ],
+    "time_window": "2026-07-21T10:25:00Z ~ 2026-07-21T10:26:00Z",
+    "alert_summary": "svc-a: 2 alerts [anomaly, anomaly_burst]"
+  },
+  "root_cause": {
+    "node": "svc-b",
+    "confidence": 0.5,
+    "causal_chain": [
+      "svc-b -> svc-a: upstream failure"
+    ],
+    "suggested_fixes": [
+      {
+        "type": "restart",
+        "target": "svc-b",
+        "action": "service_restart",
+        "risk": "high",
+        "requires_approval": true
+      }
+    ]
+  },
+  "repair_actions": [],
+  "rollback_plans": [],
+  "validation": {
+    "status": "pending",
+    "sla_check": "pending",
+    "metrics_after": {},
+    "trace_check": {},
+    "secondary_alerts": false,
+    "secondary_alert_details": []
+  },
+  "evidence": {
+    "trace_ids": [],
+    "metrics_snapshots": [],
+    "audit_log": ""
+  },
+  "raw_alerts": [
+    {
+      "id": "ALT-X1",
+      "source": "custom",
+      "service": "svc-a",
+      "type": "anomaly",
+      "value": 1,
+      "threshold": 0,
+      "severity": 2,
+      "ts": "2026-07-21T10:25:00Z",
+      "message": "svc-a anomaly detected"
+    },
+    {
+      "id": "ALT-X2",
+      "source": "custom",
+      "service": "svc-a",
+      "type": "anomaly_burst",
+      "value": 2,
+      "threshold": 0,
+      "severity": 2,
+      "ts": "2026-07-21T10:26:00Z",
+      "message": "svc-a second anomaly"
+    },
+    {
+      "id": "ALT-X3",
+      "source": "custom",
+      "service": "svc-b",
+      "type": "anomaly",
+      "value": 1,
+      "threshold": 0,
+      "severity": 2,
+      "ts": "2026-07-21T10:27:00Z",
+      "message": "svc-b anomaly detected"
+    }
+  ],
+  "postmortem": {
+    "incident_id": "INC-20260803-394409",
+    "summary": "Root cause: svc-b. svc-a: 2 alerts [anomaly, anomaly_burst]",
+    "timeline": [
+      "AlertAggregator starting",
+      "RootCauseAnalyst starting",
+      "Low root cause confidence",
+      "IncidentReviewer starting"
+    ],
+    "mttr_seconds": 0.001,
+    "actions_taken": [],
+    "validation_result": "pending",
+    "lessons": "Monitor svc-b connection pool; set proactive alert at 80% capacity",
+    "generated_at": "2026-08-03T07:23:59Z"
+  },
+  "knowledge_update": {
+    "root_pattern": {
+      "pattern_type": "root_cause_pattern",
+      "service": "svc-b",
+      "symptom": "svc-a: 2 alerts [anomaly, anomaly_burst]",
+      "root_cause": "svc-b",
+      "confidence": 0.5
+    },
+    "fix_patterns": [
+      {
+        "pattern_type": "fix_pattern",
+        "root_cause": "svc-b",
+        "fix_action": "service_restart",
+        "target": "svc-b",
+        "effectiveness": "unknown"
+      }
+    ],
+    "postmortem": {
+      "incident_id": "INC-20260803-394409",
+      "summary": "Root cause: svc-b. svc-a: 2 alerts [anomaly, anomaly_burst]",
+      "timeline": [
+        "AlertAggregator starting",
+        "RootCauseAnalyst starting",
+        "Low root cause confidence",
+        "IncidentReviewer starting"
+      ],
+      "mttr_seconds": 0.001,
+      "actions_taken": [],
+      "validation_result": "pending",
+      "lessons": "Monitor svc-b connection pool; set proactive alert at 80% capacity",
+      "generated_at": "2026-08-03T07:23:59Z"
+    },
+    "runbook_suggestion": {
+      "service": "svc-b",
+      "trigger": "svc-a: 2 alerts [anomaly, anomaly_burst]",
+      "action": "service_restart",
+      "source": "auto-extracted"
+    },
+    "consistency_check": true,
+    "consistency_notes": []
+  }
+}

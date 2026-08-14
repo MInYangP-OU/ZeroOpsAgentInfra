@@ -1,0 +1,4 @@
+{
+  "name": "proactive_detection",
+  "description": "主动感知剧本：AnomalyDetector 基于 EWMA 动态阈值检测到 inventory-service 错误率突变，生成 soft_alerts；后续链路正常定位 + 修复。"
+}

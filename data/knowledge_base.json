@@ -1,0 +1,26 @@
+[
+  {
+    "id": "KB-001",
+    "pattern_service": "inventory-service",
+    "pattern_type": "root_cause_pattern",
+    "root_cause": "DB connection pool exhausted",
+    "fix_action": "increase_max_connections",
+    "confidence": 0.95
+  },
+  {
+    "id": "KB-002",
+    "pattern_service": "order-service",
+    "pattern_type": "fix_pattern",
+    "root_cause": "inventory-service timeout",
+    "fix_action": "circuit_breaker_activate",
+    "confidence": 0.88
+  },
+  {
+    "id": "KB-003",
+    "pattern_service": "payment-service",
+    "pattern_type": "root_cause_pattern",
+    "root_cause": "upstream cascade timeout",
+    "fix_action": "timeout_adjustment",
+    "confidence": 0.82
+  }
+]

@@ -1,0 +1,21 @@
+AgentTeams: ZeroOps-Team
+Agents: 6
+Pipeline: AnomalyDetector -> AlertAggregator -> RootCauseAnalyst -> RepairExecutor -> RecoveryValidator -> IncidentReviewer
+Final State: closed
+Transitions: 5
+Team Events: 8
+
+Incident: INC-20260814-85C79D
+Severity: P2
+Root Cause: svc-b (confidence: 0.5)
+Soft Alerts: 8
+Top-K Candidates: ['svc-b']
+Repair Actions: 0
+Canary: n/a
+Validation: pending (SLA: pending)
+  - Layer1 Metrics: pending (0 services)
+  - Layer2 Trace: PASSED
+  - Layer3 Regression: PASSED
+Postmortem: True
+Knowledge Consistency: True (notes: [])
+MTTR: 0.001s

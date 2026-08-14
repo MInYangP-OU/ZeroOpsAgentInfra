@@ -1,0 +1,11 @@
+{
+  "name": "canary_failure",
+  "description": "Canary 失败剧本：canary-validator 在生产执行前灰度验证不通过（高错误率），RepairExecutor 直接走 escalated，状态机走 repairing->escalated->reviewed->closed。",
+  "inject_canary_failure": [
+    {
+      "service": "inventory-service",
+      "metric": "error_rate",
+      "comment": "Poison canary probe metric to simulate canary validation failure."
+    }
+  ]
+}

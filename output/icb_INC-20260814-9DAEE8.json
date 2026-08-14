@@ -1,0 +1,335 @@
+{
+  "incident_id": "INC-20260814-9DAEE8",
+  "timestamp": "2026-08-14T03:24:32Z",
+  "severity": "P2",
+  "stage": "reviewed",
+  "alert_fingerprint": {
+    "source_count": 3,
+    "correlated_services": [
+      "svc-b"
+    ],
+    "time_window": "2026-07-21T10:25:00Z ~ 2026-07-21T10:26:00Z",
+    "alert_summary": "svc-a: 2 alerts [anomaly, anomaly_burst]"
+  },
+  "root_cause": {
+    "node": "inventory-service",
+    "confidence": 0.7,
+    "causal_chain": [
+      "Root cause: inventory-service"
+    ],
+    "suggested_fixes": [
+      {
+        "type": "scaling",
+        "target": "inventory-service",
+        "action": "increase_max_connections",
+        "from": 50,
+        "to": 200,
+        "risk": "high",
+        "requires_approval": true
+      }
+    ]
+  },
+  "repair_actions": [
+    {
+      "action_id": "ACT-001",
+      "action_type": "scaling",
+      "target": "inventory-service",
+      "change": "increase_max_connections",
+      "approved_by": "human:sre-team-lead",
+      "timestamp": "2026-08-14T03:24:32Z",
+      "status": "executed"
+    }
+  ],
+  "rollback_plans": [
+    {
+      "action_id": "ACT-001-ROLLBACK",
+      "change": "revert: increase_max_connections on inventory-service"
+    }
+  ],
+  "validation": {
+    "status": "degraded",
+    "sla_check": "FAILED",
+    "metrics_after": {
+      "inventory-service": {
+        "error_rate": 0.01,
+        "latency_ms": 50.0,
+        "healthy": true,
+        "source": "prometheus"
+      },
+      "svc-a": {
+        "error_rate": 0.5,
+        "latency_ms": 500.0,
+        "healthy": false,
+        "source": "degraded"
+      },
+      "svc-b": {
+        "error_rate": 0.5,
+        "latency_ms": 500.0,
+        "healthy": false,
+        "source": "degraded"
+      }
+    },
+    "trace_check": {
+      "passed": true,
+      "services": {
+        "inventory-service": {
+          "passed": true,
+          "span_count": 2,
+          "anomalous_spans": [],
+          "source": "trace-mcp"
+        },
+        "svc-a": {
+          "passed": true,
+          "span_count": 0,
+          "anomalous_spans": [],
+          "source": "no_data"
+        },
+        "svc-b": {
+          "passed": true,
+          "span_count": 0,
+          "anomalous_spans": [],
+          "source": "no_data"
+        }
+      },
+      "source": "trace-mcp"
+    },
+    "secondary_alerts": false,
+    "secondary_alert_details": []
+  },
+  "evidence": {
+    "trace_ids": [],
+    "metrics_snapshots": [],
+    "audit_log": "audit-INC-20260814-9DAEE8-1786677872"
+  },
+  "raw_alerts": [
+    {
+      "id": "ALT-X1",
+      "source": "custom",
+      "service": "svc-a",
+      "type": "anomaly",
+      "value": 1,
+      "threshold": 0,
+      "severity": 2,
+      "ts": "2026-07-21T10:25:00Z",
+      "message": "svc-a anomaly detected"
+    },
+    {
+      "id": "ALT-X2",
+      "source": "custom",
+      "service": "svc-a",
+      "type": "anomaly_burst",
+      "value": 2,
+      "threshold": 0,
+      "severity": 2,
+      "ts": "2026-07-21T10:26:00Z",
+      "message": "svc-a second anomaly"
+    },
+    {
+      "id": "ALT-X3",
+      "source": "custom",
+      "service": "svc-b",
+      "type": "anomaly",
+      "value": 1,
+      "threshold": 0,
+      "severity": 2,
+      "ts": "2026-07-21T10:27:00Z",
+      "message": "svc-b anomaly detected"
+    }
+  ],
+  "postmortem": {
+    "incident_id": "INC-20260814-9DAEE8",
+    "summary": "Root cause: inventory-service. svc-a: 2 alerts [anomaly, anomaly_burst]",
+    "timeline": [
+      "AlertAggregator starting",
+      "RootCauseAnalyst starting",
+      "RepairExecutor starting",
+      "RecoveryValidator starting",
+      "Validation failed; rolled back",
+      "IncidentReviewer starting"
+    ],
+    "mttr_seconds": 0.002,
+    "actions_taken": [
+      "increase_max_connections"
+    ],
+    "validation_result": "degraded",
+    "lessons": "Monitor inventory-service connection pool; set proactive alert at 80% capacity",
+    "generated_at": "2026-08-14T03:24:32Z"
+  },
+  "knowledge_update": {
+    "root_pattern": {
+      "pattern_type": "root_cause_pattern",
+      "service": "inventory-service",
+      "symptom": "svc-a: 2 alerts [anomaly, anomaly_burst]",
+      "root_cause": "inventory-service",
+      "confidence": 0.7
+    },
+    "fix_patterns": [
+      {
+        "pattern_type": "fix_pattern",
+        "root_cause": "inventory-service",
+        "fix_action": "increase_max_connections",
+        "target": "inventory-service",
+        "effectiveness": "unknown"
+      }
+    ],
+    "postmortem": {
+      "incident_id": "INC-20260814-9DAEE8",
+      "summary": "Root cause: inventory-service. svc-a: 2 alerts [anomaly, anomaly_burst]",
+      "timeline": [
+        "AlertAggregator starting",
+        "RootCauseAnalyst starting",
+        "RepairExecutor starting",
+        "RecoveryValidator starting",
+        "Validation failed; rolled back",
+        "IncidentReviewer starting"
+      ],
+      "mttr_seconds": 0.002,
+      "actions_taken": [
+        "increase_max_connections"
+      ],
+      "validation_result": "degraded",
+      "lessons": "Monitor inventory-service connection pool; set proactive alert at 80% capacity",
+      "generated_at": "2026-08-14T03:24:32Z"
+    },
+    "runbook_suggestion": {
+      "service": "inventory-service",
+      "trigger": "svc-a: 2 alerts [anomaly, anomaly_burst]",
+      "action": "increase_max_connections",
+      "source": "auto-extracted"
+    },
+    "consistency_check": true,
+    "consistency_notes": []
+  },
+  "soft_alerts": [
+    {
+      "service": "order-service",
+      "metric": "error_rate",
+      "anomaly_count": 2,
+      "max_z_score": 13.56,
+      "latest_value": 0.18,
+      "final_ewma": 0.1176,
+      "final_sigma": 0.05,
+      "source": "anomaly_detector"
+    },
+    {
+      "service": "order-service",
+      "metric": "latency_ms",
+      "anomaly_count": 4,
+      "max_z_score": 53.58,
+      "latest_value": 1200,
+      "final_ewma": 678.1622,
+      "final_sigma": 362.5487,
+      "source": "anomaly_detector"
+    },
+    {
+      "service": "payment-service",
+      "metric": "error_rate",
+      "anomaly_count": 3,
+      "max_z_score": 21.07,
+      "latest_value": 0.32,
+      "final_ewma": 0.1881,
+      "final_sigma": 0.1117,
+      "source": "anomaly_detector"
+    },
+    {
+      "service": "payment-service",
+      "metric": "latency_ms",
+      "anomaly_count": 3,
+      "max_z_score": 41.07,
+      "latest_value": 1400,
+      "final_ewma": 804.0672,
+      "final_sigma": 473.5337,
+      "source": "anomaly_detector"
+    },
+    {
+      "service": "inventory-service",
+      "metric": "error_rate",
+      "anomaly_count": 3,
+      "max_z_score": 21.07,
+      "latest_value": 0.45,
+      "final_ewma": 0.2698,
+      "final_sigma": 0.1493,
+      "source": "anomaly_detector"
+    },
+    {
+      "service": "inventory-service",
+      "metric": "latency_ms",
+      "anomaly_count": 3,
+      "max_z_score": 42.32,
+      "latest_value": 2500,
+      "final_ewma": 1402.3334,
+      "final_sigma": 827.2093,
+      "source": "anomaly_detector"
+    },
+    {
+      "service": "api-gateway",
+      "metric": "error_rate",
+      "anomaly_count": 3,
+      "max_z_score": 11.03,
+      "latest_value": 0.11,
+      "final_ewma": 0.0678,
+      "final_sigma": 0.0352,
+      "source": "anomaly_detector"
+    },
+    {
+      "service": "api-gateway",
+      "metric": "latency_ms",
+      "anomaly_count": 3,
+      "max_z_score": 37.99,
+      "latest_value": 600,
+      "final_ewma": 351.7052,
+      "final_sigma": 190.705,
+      "source": "anomaly_detector"
+    }
+  ],
+  "top_k_candidates": [
+    {
+      "rank": 1,
+      "node": "inventory-service",
+      "confidence": 0.7,
+      "raw_score": 3.0
+    }
+  ],
+  "evidence_for_root_cause": {
+    "inventory-service": {
+      "metric_evidence": [],
+      "trace_evidence": [],
+      "kb_matches": [],
+      "kb_keyword_hits": 0
+    }
+  },
+  "canary_result": {
+    "passed": true,
+    "checked_at": "2026-08-14T03:24:32Z",
+    "per_action": [
+      {
+        "action_id": "ACT-001",
+        "deploy": {
+          "deploy_id": "deploy-1786677872-canary",
+          "track": "canary",
+          "status": "success"
+        },
+        "probe": {
+          "healthy": true,
+          "metrics": {
+            "error_rate": 0.01,
+            "latency_ms": 50,
+            "source": "prometheus"
+          },
+          "trace": {
+            "span_count": 2,
+            "bad_span_count": 0,
+            "source": "trace-mcp"
+          }
+        },
+        "passed": true
+      }
+    ],
+    "summary": {
+      "total_actions": 1,
+      "high_risk_checked": 1,
+      "passed": 1,
+      "failed": 0
+    }
+  }
+}

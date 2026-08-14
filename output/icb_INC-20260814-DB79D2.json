@@ -1,0 +1,235 @@
+{
+  "incident_id": "INC-20260814-DB79D2",
+  "timestamp": "2026-08-14T03:24:47Z",
+  "severity": "P2",
+  "stage": "reviewed",
+  "alert_fingerprint": {
+    "source_count": 3,
+    "correlated_services": [
+      "svc-b"
+    ],
+    "time_window": "2026-07-21T10:25:00Z ~ 2026-07-21T10:26:00Z",
+    "alert_summary": "svc-a: 2 alerts [anomaly, anomaly_burst]"
+  },
+  "root_cause": {
+    "node": "svc-a",
+    "confidence": 0.5,
+    "causal_chain": [
+      "svc-a -> svc-b: upstream failure"
+    ],
+    "suggested_fixes": [
+      {
+        "type": "restart",
+        "target": "svc-a",
+        "action": "service_restart",
+        "risk": "high",
+        "requires_approval": true
+      }
+    ]
+  },
+  "repair_actions": [],
+  "rollback_plans": [],
+  "validation": {
+    "status": "pending",
+    "sla_check": "pending",
+    "metrics_after": {},
+    "trace_check": {},
+    "secondary_alerts": false,
+    "secondary_alert_details": []
+  },
+  "evidence": {
+    "trace_ids": [],
+    "metrics_snapshots": [],
+    "audit_log": ""
+  },
+  "raw_alerts": [
+    {
+      "id": "ALT-X1",
+      "source": "custom",
+      "service": "svc-a",
+      "type": "anomaly",
+      "value": 1,
+      "threshold": 0,
+      "severity": 2,
+      "ts": "2026-07-21T10:25:00Z",
+      "message": "svc-a anomaly detected"
+    },
+    {
+      "id": "ALT-X2",
+      "source": "custom",
+      "service": "svc-a",
+      "type": "anomaly_burst",
+      "value": 2,
+      "threshold": 0,
+      "severity": 2,
+      "ts": "2026-07-21T10:26:00Z",
+      "message": "svc-a second anomaly"
+    },
+    {
+      "id": "ALT-X3",
+      "source": "custom",
+      "service": "svc-b",
+      "type": "anomaly",
+      "value": 1,
+      "threshold": 0,
+      "severity": 2,
+      "ts": "2026-07-21T10:27:00Z",
+      "message": "svc-b anomaly detected"
+    }
+  ],
+  "postmortem": {
+    "incident_id": "INC-20260814-DB79D2",
+    "summary": "Root cause: svc-a. svc-a: 2 alerts [anomaly, anomaly_burst]",
+    "timeline": [
+      "AlertAggregator starting",
+      "RootCauseAnalyst starting",
+      "Low root cause confidence",
+      "IncidentReviewer starting"
+    ],
+    "mttr_seconds": 0.001,
+    "actions_taken": [],
+    "validation_result": "pending",
+    "lessons": "Monitor svc-a connection pool; set proactive alert at 80% capacity",
+    "generated_at": "2026-08-14T03:24:47Z"
+  },
+  "knowledge_update": {
+    "root_pattern": {
+      "pattern_type": "root_cause_pattern",
+      "service": "svc-a",
+      "symptom": "svc-a: 2 alerts [anomaly, anomaly_burst]",
+      "root_cause": "svc-a",
+      "confidence": 0.5
+    },
+    "fix_patterns": [
+      {
+        "pattern_type": "fix_pattern",
+        "root_cause": "svc-a",
+        "fix_action": "service_restart",
+        "target": "svc-a",
+        "effectiveness": "unknown"
+      }
+    ],
+    "postmortem": {
+      "incident_id": "INC-20260814-DB79D2",
+      "summary": "Root cause: svc-a. svc-a: 2 alerts [anomaly, anomaly_burst]",
+      "timeline": [
+        "AlertAggregator starting",
+        "RootCauseAnalyst starting",
+        "Low root cause confidence",
+        "IncidentReviewer starting"
+      ],
+      "mttr_seconds": 0.001,
+      "actions_taken": [],
+      "validation_result": "pending",
+      "lessons": "Monitor svc-a connection pool; set proactive alert at 80% capacity",
+      "generated_at": "2026-08-14T03:24:47Z"
+    },
+    "runbook_suggestion": {
+      "service": "svc-a",
+      "trigger": "svc-a: 2 alerts [anomaly, anomaly_burst]",
+      "action": "service_restart",
+      "source": "auto-extracted"
+    },
+    "consistency_check": true,
+    "consistency_notes": []
+  },
+  "soft_alerts": [
+    {
+      "service": "order-service",
+      "metric": "error_rate",
+      "anomaly_count": 2,
+      "max_z_score": 13.56,
+      "latest_value": 0.18,
+      "final_ewma": 0.1176,
+      "final_sigma": 0.05,
+      "source": "anomaly_detector"
+    },
+    {
+      "service": "order-service",
+      "metric": "latency_ms",
+      "anomaly_count": 4,
+      "max_z_score": 53.58,
+      "latest_value": 1200,
+      "final_ewma": 678.1622,
+      "final_sigma": 362.5487,
+      "source": "anomaly_detector"
+    },
+    {
+      "service": "payment-service",
+      "metric": "error_rate",
+      "anomaly_count": 3,
+      "max_z_score": 21.07,
+      "latest_value": 0.32,
+      "final_ewma": 0.1881,
+      "final_sigma": 0.1117,
+      "source": "anomaly_detector"
+    },
+    {
+      "service": "payment-service",
+      "metric": "latency_ms",
+      "anomaly_count": 3,
+      "max_z_score": 41.07,
+      "latest_value": 1400,
+      "final_ewma": 804.0672,
+      "final_sigma": 473.5337,
+      "source": "anomaly_detector"
+    },
+    {
+      "service": "inventory-service",
+      "metric": "error_rate",
+      "anomaly_count": 3,
+      "max_z_score": 21.07,
+      "latest_value": 0.45,
+      "final_ewma": 0.2698,
+      "final_sigma": 0.1493,
+      "source": "anomaly_detector"
+    },
+    {
+      "service": "inventory-service",
+      "metric": "latency_ms",
+      "anomaly_count": 3,
+      "max_z_score": 42.32,
+      "latest_value": 2500,
+      "final_ewma": 1402.3334,
+      "final_sigma": 827.2093,
+      "source": "anomaly_detector"
+    },
+    {
+      "service": "api-gateway",
+      "metric": "error_rate",
+      "anomaly_count": 3,
+      "max_z_score": 11.03,
+      "latest_value": 0.11,
+      "final_ewma": 0.0678,
+      "final_sigma": 0.0352,
+      "source": "anomaly_detector"
+    },
+    {
+      "service": "api-gateway",
+      "metric": "latency_ms",
+      "anomaly_count": 3,
+      "max_z_score": 37.99,
+      "latest_value": 600,
+      "final_ewma": 351.7052,
+      "final_sigma": 190.705,
+      "source": "anomaly_detector"
+    }
+  ],
+  "top_k_candidates": [
+    {
+      "rank": 1,
+      "node": "svc-a",
+      "confidence": 0.5,
+      "raw_score": 0.0
+    }
+  ],
+  "evidence_for_root_cause": {
+    "svc-a": {
+      "metric_evidence": [],
+      "trace_evidence": [],
+      "kb_matches": [],
+      "kb_keyword_hits": 0
+    }
+  },
+  "canary_result": {}
+}

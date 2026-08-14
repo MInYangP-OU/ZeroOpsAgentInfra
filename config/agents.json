@@ -1,0 +1,84 @@
+{
+  "team_name": "ZeroOps-Team",
+  "pipeline": [
+    "AlertAggregator",
+    "RootCauseAnalyst",
+    "RepairExecutor",
+    "RecoveryValidator",
+    "IncidentReviewer"
+  ],
+  "agents": [
+    {
+      "name": "AlertAggregator",
+      "role": "Alert Aggregation",
+      "security_level": "read-only",
+      "failure_strategy": "degrade",
+      "skills": [
+        "alert-correlation"
+      ],
+      "mcp": [
+        "prometheus-mcp",
+        "cmdb-mcp",
+        "log-mcp"
+      ]
+    },
+    {
+      "name": "RootCauseAnalyst",
+      "role": "Root Cause Analysis",
+      "security_level": "read-only",
+      "failure_strategy": "degrade",
+      "skills": [
+        "root-cause-graph"
+      ],
+      "mcp": [
+        "cmdb-mcp",
+        "kb-mcp",
+        "trace-mcp"
+      ]
+    },
+    {
+      "name": "RepairExecutor",
+      "role": "Repair Execution",
+      "security_level": "approval-required",
+      "failure_strategy": "degrade",
+      "skills": [
+        "repair-script-gen",
+        "rollback-manager"
+      ],
+      "mcp": [
+        "kb-mcp",
+        "nacos-mcp",
+        "cicd-mcp",
+        "itsm-mcp"
+      ]
+    },
+    {
+      "name": "RecoveryValidator",
+      "role": "Recovery Validation",
+      "security_level": "read-only",
+      "failure_strategy": "degrade",
+      "skills": [
+        "service-health-check",
+        "rollback-manager"
+      ],
+      "mcp": [
+        "prometheus-mcp",
+        "trace-mcp"
+      ]
+    },
+    {
+      "name": "IncidentReviewer",
+      "role": "Incident Review",
+      "security_level": "read-only",
+      "failure_strategy": "degrade",
+      "skills": [
+        "knowledge-extract"
+      ],
+      "mcp": [
+        "kb-mcp",
+        "trace-mcp",
+        "itsm-mcp"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,302 @@
+{
+  "incident_id": "INC-20260803-E76FF2",
+  "timestamp": "2026-08-03T07:23:59Z",
+  "severity": "P1",
+  "stage": "reviewed",
+  "alert_fingerprint": {
+    "source_count": 8,
+    "correlated_services": [
+      "api-gateway",
+      "inventory-service",
+      "payment-service"
+    ],
+    "time_window": "2026-07-21T10:25:00Z ~ 2026-07-21T10:29:00Z",
+    "alert_summary": "order-service: 4 alerts [call_failure, circuit_breaker, error_rate, latency]"
+  },
+  "root_cause": {
+    "node": "inventory-service",
+    "confidence": 0.92,
+    "causal_chain": [
+      "inventory-service -> order-service: upstream failure",
+      "inventory-service -> order-service -> payment-service: cascading failure"
+    ],
+    "suggested_fixes": [
+      {
+        "type": "scaling",
+        "target": "inventory-service",
+        "action": "increase_max_connections",
+        "from": 50,
+        "to": 200,
+        "risk": "high",
+        "requires_approval": true
+      },
+      {
+        "type": "traffic",
+        "target": "inventory-service",
+        "action": "circuit_breaker_activate",
+        "risk": "high",
+        "requires_approval": true
+      }
+    ]
+  },
+  "repair_actions": [
+    {
+      "action_id": "ACT-001",
+      "action_type": "scaling",
+      "target": "inventory-service",
+      "change": "increase_max_connections",
+      "approved_by": "human:sre-team-lead",
+      "timestamp": "2026-08-03T07:23:59Z",
+      "status": "executed"
+    },
+    {
+      "action_id": "ACT-002",
+      "action_type": "traffic",
+      "target": "inventory-service",
+      "change": "circuit_breaker_activate",
+      "approved_by": "human:sre-team-lead",
+      "timestamp": "2026-08-03T07:23:59Z",
+      "status": "executed"
+    }
+  ],
+  "rollback_plans": [
+    {
+      "action_id": "ACT-001-ROLLBACK",
+      "change": "revert: increase_max_connections on inventory-service"
+    },
+    {
+      "action_id": "ACT-002-ROLLBACK",
+      "change": "revert: circuit_breaker_activate on inventory-service"
+    }
+  ],
+  "validation": {
+    "status": "degraded",
+    "sla_check": "PASSED",
+    "metrics_after": {
+      "inventory-service": {
+        "error_rate": 0.01,
+        "latency_ms": 50.0,
+        "healthy": true,
+        "source": "prometheus"
+      },
+      "order-service": {
+        "error_rate": 0.01,
+        "latency_ms": 45.0,
+        "healthy": true,
+        "source": "prometheus"
+      },
+      "payment-service": {
+        "error_rate": 0.005,
+        "latency_ms": 30.0,
+        "healthy": true,
+        "source": "prometheus"
+      }
+    },
+    "trace_check": {
+      "passed": false,
+      "services": {
+        "inventory-service": {
+          "passed": true,
+          "span_count": 2,
+          "anomalous_spans": [],
+          "source": "trace-mcp"
+        },
+        "order-service": {
+          "passed": false,
+          "span_count": 3,
+          "anomalous_spans": [
+            {
+              "span": "inventory-service.getStock",
+              "duration_ms": 2300,
+              "status": "error"
+            }
+          ],
+          "source": "trace-mcp"
+        },
+        "payment-service": {
+          "passed": true,
+          "span_count": 2,
+          "anomalous_spans": [],
+          "source": "trace-mcp"
+        }
+      },
+      "source": "trace-mcp"
+    },
+    "secondary_alerts": true,
+    "secondary_alert_details": [
+      {
+        "service": "payment-service",
+        "type": "error_rate",
+        "ts_minutes_ago": 1
+      }
+    ]
+  },
+  "evidence": {
+    "trace_ids": [],
+    "metrics_snapshots": [],
+    "audit_log": "audit-INC-20260803-E76FF2-1785741839"
+  },
+  "raw_alerts": [
+    {
+      "id": "ALT-001",
+      "source": "prometheus",
+      "service": "order-service",
+      "type": "error_rate",
+      "value": 15.2,
+      "threshold": 5.0,
+      "severity": 1,
+      "ts": "2026-07-21T10:25:00Z",
+      "message": "order-service error rate 15.2% > 5%"
+    },
+    {
+      "id": "ALT-002",
+      "source": "prometheus",
+      "service": "payment-service",
+      "type": "timeout_rate",
+      "value": 30.5,
+      "threshold": 10.0,
+      "severity": 1,
+      "ts": "2026-07-21T10:26:00Z",
+      "message": "payment-service timeout 30.5% > 10%"
+    },
+    {
+      "id": "ALT-003",
+      "source": "prometheus",
+      "service": "order-service",
+      "type": "latency",
+      "value": 850,
+      "threshold": 200,
+      "severity": 2,
+      "ts": "2026-07-21T10:26:30Z",
+      "message": "order-service p99 latency 850ms > 200ms"
+    },
+    {
+      "id": "ALT-004",
+      "source": "log",
+      "service": "inventory-service",
+      "type": "connection_pool",
+      "value": 50,
+      "threshold": 50,
+      "severity": 1,
+      "ts": "2026-07-21T10:27:00Z",
+      "message": "inventory-service DB connection pool exhausted"
+    },
+    {
+      "id": "ALT-005",
+      "source": "apm",
+      "service": "order-service",
+      "type": "call_failure",
+      "value": 45,
+      "threshold": 5,
+      "severity": 1,
+      "ts": "2026-07-21T10:27:30Z",
+      "message": "order-service -> inventory-service call failures 45%"
+    },
+    {
+      "id": "ALT-006",
+      "source": "prometheus",
+      "service": "payment-service",
+      "type": "error_rate",
+      "value": 8.3,
+      "threshold": 5.0,
+      "severity": 2,
+      "ts": "2026-07-21T10:28:00Z",
+      "message": "payment-service error rate 8.3% > 5%"
+    },
+    {
+      "id": "ALT-007",
+      "source": "log",
+      "service": "inventory-service",
+      "type": "timeout",
+      "value": 12,
+      "threshold": 3,
+      "severity": 2,
+      "ts": "2026-07-21T10:28:30Z",
+      "message": "inventory-service DB query timeouts 12 > 3"
+    },
+    {
+      "id": "ALT-008",
+      "source": "custom",
+      "service": "order-service",
+      "type": "circuit_breaker",
+      "value": 1,
+      "threshold": 0,
+      "severity": 1,
+      "ts": "2026-07-21T10:29:00Z",
+      "message": "order-service circuit breaker activated"
+    }
+  ],
+  "postmortem": {
+    "incident_id": "INC-20260803-E76FF2",
+    "summary": "Root cause: inventory-service. order-service: 4 alerts [call_failure, circuit_breaker, error_rate, latency]",
+    "timeline": [
+      "AlertAggregator starting",
+      "RootCauseAnalyst starting",
+      "RepairExecutor starting",
+      "RecoveryValidator starting",
+      "Validation failed; rolled back",
+      "IncidentReviewer starting"
+    ],
+    "mttr_seconds": 0.004,
+    "actions_taken": [
+      "increase_max_connections",
+      "circuit_breaker_activate"
+    ],
+    "validation_result": "degraded",
+    "lessons": "Monitor inventory-service connection pool; set proactive alert at 80% capacity",
+    "generated_at": "2026-08-03T07:23:59Z"
+  },
+  "knowledge_update": {
+    "root_pattern": {
+      "pattern_type": "root_cause_pattern",
+      "service": "inventory-service",
+      "symptom": "order-service: 4 alerts [call_failure, circuit_breaker, error_rate, latency]",
+      "root_cause": "inventory-service",
+      "confidence": 0.92
+    },
+    "fix_patterns": [
+      {
+        "pattern_type": "fix_pattern",
+        "root_cause": "inventory-service",
+        "fix_action": "increase_max_connections",
+        "target": "inventory-service",
+        "effectiveness": "unknown"
+      },
+      {
+        "pattern_type": "fix_pattern",
+        "root_cause": "inventory-service",
+        "fix_action": "circuit_breaker_activate",
+        "target": "inventory-service",
+        "effectiveness": "unknown"
+      }
+    ],
+    "postmortem": {
+      "incident_id": "INC-20260803-E76FF2",
+      "summary": "Root cause: inventory-service. order-service: 4 alerts [call_failure, circuit_breaker, error_rate, latency]",
+      "timeline": [
+        "AlertAggregator starting",
+        "RootCauseAnalyst starting",
+        "RepairExecutor starting",
+        "RecoveryValidator starting",
+        "Validation failed; rolled back",
+        "IncidentReviewer starting"
+      ],
+      "mttr_seconds": 0.004,
+      "actions_taken": [
+        "increase_max_connections",
+        "circuit_breaker_activate"
+      ],
+      "validation_result": "degraded",
+      "lessons": "Monitor inventory-service connection pool; set proactive alert at 80% capacity",
+      "generated_at": "2026-08-03T07:23:59Z"
+    },
+    "runbook_suggestion": {
+      "service": "inventory-service",
+      "trigger": "order-service: 4 alerts [call_failure, circuit_breaker, error_rate, latency]",
+      "action": "increase_max_connections",
+      "source": "auto-extracted"
+    },
+    "consistency_check": true,
+    "consistency_notes": []
+  }
+}

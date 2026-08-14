@@ -1,0 +1,58 @@
+{
+  "skills": [
+    {
+      "name": "alert-correlation",
+      "version": "1.0.0",
+      "agent": "AlertAggregator",
+      "input": "alerts: list[dict]",
+      "output": "incidents: list[dict]",
+      "call_condition": "alert_count > 3/min",
+      "security": "read-only"
+    },
+    {
+      "name": "root-cause-graph",
+      "version": "1.0.0",
+      "agent": "RootCauseAnalyst",
+      "input": "incidents + topology + traces",
+      "output": "root_cause: dict",
+      "call_condition": "after alert-correlation",
+      "security": "read-only"
+    },
+    {
+      "name": "repair-script-gen",
+      "version": "1.0.0",
+      "agent": "RepairExecutor",
+      "input": "root_cause + config + runbook",
+      "output": "repair_plan: dict",
+      "call_condition": "root_cause confidence > 0.7",
+      "security": "approval-required"
+    },
+    {
+      "name": "service-health-check",
+      "version": "1.0.0",
+      "agent": "RecoveryValidator",
+      "input": "repair_actions + sla",
+      "output": "validation: dict",
+      "call_condition": "after repair execution",
+      "security": "read-only"
+    },
+    {
+      "name": "knowledge-extract",
+      "version": "1.0.0",
+      "agent": "IncidentReviewer",
+      "input": "icb (full context)",
+      "output": "knowledge_update: dict",
+      "call_condition": "after validation pass",
+      "security": "audit-required"
+    },
+    {
+      "name": "rollback-manager",
+      "version": "1.0.0",
+      "agent": "RepairExecutor+RecoveryValidator",
+      "input": "repair_plan",
+      "output": "rollback_script + report",
+      "call_condition": "pre-execution + on-failure",
+      "security": "audit-required"
+    }
+  ]
+}

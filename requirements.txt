@@ -1,0 +1,14 @@
+# AgentInfra ZeroOps -- Dependencies
+# Python 3.10+ required (uses match-case and type union syntax)
+#
+# This package uses only Python standard library for the core simulation.
+# In production, add the following:
+#
+# agentteams-sdk>=1.0.0    # Official AgentTeams (Hiclaw) SDK
+# mcp>=0.9.0               # Model Context Protocol client
+# pyzotero>=1.5.0          # Optional: Zotero integration
+# opentelemetry-sdk>=1.0.0 # OpenTelemetry GenAI tracing
+# psycopg2-binary>=2.9     # PolarDB PostgreSQL (pgvector)
+# prometheus-client>=0.20   # Prometheus metrics exporter
+#
+# No pip install needed for this submission -- runs on stdlib only.

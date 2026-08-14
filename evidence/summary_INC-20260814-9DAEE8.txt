@@ -1,0 +1,22 @@
+AgentTeams: ZeroOps-Team
+Agents: 6
+Pipeline: AnomalyDetector -> AlertAggregator -> RootCauseAnalyst -> RepairExecutor -> RecoveryValidator -> IncidentReviewer
+Final State: closed
+Transitions: 7
+Team Events: 8
+
+Incident: INC-20260814-9DAEE8
+Severity: P2
+Root Cause: inventory-service (confidence: 0.7)
+Soft Alerts: 8
+Top-K Candidates: ['inventory-service']
+Repair Actions: 1
+  - [ACT-001] scaling on inventory-service: increase_max_connections (approved_by: human:sre-team-lead)
+Canary: True
+Validation: degraded (SLA: FAILED)
+  - Layer1 Metrics: FAILED (3 services)
+  - Layer2 Trace: PASSED
+  - Layer3 Regression: PASSED
+Postmortem: True
+Knowledge Consistency: True (notes: [])
+MTTR: 0.002s
